@@ -128,3 +128,4 @@ dmypy.json
 .idea/
 
 descriptive_analysis/results/
+descriptive_analysis/data/
