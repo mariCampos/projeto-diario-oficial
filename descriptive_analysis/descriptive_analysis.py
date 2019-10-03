@@ -75,7 +75,7 @@ def main():
 
     #Salvando gráfico com a quantidade de entradas em cada base
     plt.clf()
-    plt.bar(base_len.keys(), base_len.values())
+    plt.barh(base_len.keys(), base_len.values())
     plt.xlabel("Quantidade de Entradas")
     plt.savefig(results_dir_path + "/" + "base_qtd_entries.png", bbox_inches="tight")
 
