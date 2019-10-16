@@ -10,11 +10,14 @@ import matplotlib.pyplot as plt
 
 from nltk.corpus import stopwords
 from wordcloud import WordCloud
+from nltk import ngrams
 
 
 def main():
     raw_data_dir_path = "data"
     results_dir_path = "results"
+    GRAM_SIZE = 1
+    TOP_X_WORDS = 30
     base_len = {}
 
     try:
@@ -38,10 +41,12 @@ def main():
         words_freq = {}
         for _, curr_row in data_frame.iterrows():
             curr_row_content = unidecode.unidecode(curr_row["conteudo"].lower().strip())
-            curr_row_words = curr_row_content.split()
             curr_row_words_filtered = filter(
                 lambda word: word not in stopwords.words("portuguese") and word not in string.punctuation,
-                curr_row_words)
+                curr_row_content.split())
+            curr_row_words_filtered = ngrams(curr_row_words_filtered, GRAM_SIZE)
+            curr_row_words_filtered = [' '.join(grams) for grams in curr_row_words_filtered]
+            
 
             for word in curr_row_words_filtered:
                 if word in words_freq:
@@ -50,7 +55,7 @@ def main():
                     words_freq[word] = 1
 
         # Distribuição de frequência
-        words_freq_sorted = sorted(words_freq.items(), key=lambda kv: kv[1], reverse=True)[0:30]
+        words_freq_sorted = sorted(words_freq.items(), key=lambda kv: kv[1], reverse=True)[0:TOP_X_WORDS]
         x = [i[0] for i in words_freq_sorted]
         y = [i[1] for i in words_freq_sorted]
         plt.clf()
@@ -70,7 +75,7 @@ def main():
         # Salvando dados da análise
         file = open(results_dir_path + "/" + file_name + "_analysis.txt", "w")
         file.write("Quantidade de entradas: " + str(data_frame_len) + "\n")
-        file.write("Distribuição de palavras (30 mais frequentes): " + str(words_freq_sorted) + "\n")
+        file.write("Distribuição de palavras ("+str(TOP_X_WORDS)+" mais frequentes): " + str(words_freq_sorted) + "\n")
         file.close()
 
     #Salvando gráfico com a quantidade de entradas em cada base
