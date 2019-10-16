@@ -133,3 +133,7 @@ descriptive_analysis/data/
 pre_processing/results_lemma/
 pre_processing/results/
 pre_processing/data/
+
+classification/results/
+
+classification/data/
