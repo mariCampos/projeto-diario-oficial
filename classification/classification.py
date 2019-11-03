@@ -9,7 +9,7 @@ import pathlib
 
 
 def build_args_parser():
-    usage = 'python recognition.py -o <recognition option>\n       ' \
+    usage = 'python classification.py -o <recognition option>\n       ' \
             'run with --help for arguments descriptions'
     parser = ArgumentParser(description='An algorithms suite to classify Diário Oficial documents', usage=usage)
 
