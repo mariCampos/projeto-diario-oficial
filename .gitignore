@@ -130,10 +130,11 @@ dmypy.json
 descriptive_analysis/results/
 descriptive_analysis/data/
 
-pre_processing/results_lemma/
-pre_processing/results/
 pre_processing/data/
-
-classification/results/
+pre_processing/results/
+pre_processing/results_stem/
+pre_processing/results_lemma/
 
 classification/data/
+classification/results/
+
