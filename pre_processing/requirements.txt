@@ -3,3 +3,4 @@ nltk
 matplotlib
 wordcloud
 unidecode
+spacy
