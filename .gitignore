@@ -138,3 +138,7 @@ pre_processing/results_lemma/
 classification/data/
 classification/results/
 
+classifiers/
+data/
+results/
+

@@ -2,6 +2,7 @@ from argparse import ArgumentParser
 from sklearn.model_selection import train_test_split
 import pandas as pd
 import naive_bayes as nb
+import knn 
 import numpy as np
 import os
 import glob
@@ -41,6 +42,8 @@ def main():
 
         if args.option == 1:
             model = nb.train(train_sample)
+        if args.option == 2:
+            model = knn.train(train_sample)
 
         if model is not None:
             predicted = model.predict(test_sample['conteudo'])
