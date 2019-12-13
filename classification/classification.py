@@ -49,10 +49,16 @@ def main():
             predicted = model.predict(test_sample['conteudo'])
             precision = np.mean(predicted == test_sample['saida'])
 
+            from sklearn.metrics import classification_report, confusion_matrix, accuracy_score
+
             file = open(results_dir_path + "/" + file_name + "_classification.txt", "w")
             file.write("Quantidade de entradas para treino: " + str(len(train_sample.index)) + "\n")
             file.write("Quantidade de entradas para teste: " + str(len(test_sample.index)) + "\n")
             file.write("Precisão: " + str(precision) + "\n")
+            file.write(str(confusion_matrix(test_sample['saida'], predicted)))
+            file.write(str(classification_report(test_sample['saida'], predicted)))
+            file.write(str(accuracy_score(test_sample['saida'], predicted)))
+            # file.write(str("Recall: %0.2f (+/- %0.2f)" % (scores['test_recall_macro'] .mean(), scores['test_recall_macro'] .std() * 2)))
             file.close()
 
 
